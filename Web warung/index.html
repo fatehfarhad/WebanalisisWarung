@@ -1,0 +1,3370 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>ForecastBiz - Asisten Pintar UMKM F&B</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body
+    class="app-background text-slate-800 font-sans antialiased min-h-screen flex flex-col md:flex-row"
+  >
+    <section
+      id="welcome-screen"
+      class="welcome-screen"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="welcome-title"
+      aria-describedby="welcome-description"
+    >
+      <video
+        class="welcome-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-hidden="true"
+        tabindex="-1"
+      >
+        <source src="Video01.mp4" type="video/mp4" />
+      </video>
+      <div class="welcome-video-overlay" aria-hidden="true"></div>
+      <div class="welcome-orb welcome-orb-one" aria-hidden="true"></div>
+      <div class="welcome-orb welcome-orb-two" aria-hidden="true"></div>
+      <div class="welcome-inner">
+        <header class="welcome-header">
+          <div class="welcome-brand" aria-label="ForecastBiz AI">
+            <img
+              src="LOGOO.png"
+              alt="Logo ForecastBiz"
+              class="welcome-brand-icon object-cover"
+            />
+            <span>ForecastBiz</span>
+          </div>
+          <span class="welcome-header-note">
+            <i class="fa-solid fa-sparkles"></i> Asisten pintar UMKM F&B
+          </span>
+        </header>
+
+        <div class="welcome-content">
+          <div class="welcome-copy">
+            <h1 id="welcome-title">
+              Satu dashboard untuk
+              <span>semua kebutuhan usaha kuliner.</span>
+            </h1>
+            <p id="welcome-description" class="welcome-description">
+              Pantau penjualan, atur stok, dan temukan peluang dari satu
+              dashboard yang dirancang untuk usaha kuliner Anda.
+            </p>
+            <button
+              id="welcome-start"
+              class="welcome-cta"
+              type="button"
+              autofocus
+            >
+              Masuk ke Dashboard
+              <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </button>
+            <div class="welcome-assurance">
+              <span><i class="fa-solid fa-check"></i> Praktis digunakan</span>
+              <span><i class="fa-solid fa-check"></i> Data lebih terarah</span>
+            </div>
+          </div>
+
+          <div
+            class="welcome-preview"
+            aria-label="Pratinjau ringkasan dashboard"
+          >
+            <div class="preview-glow" aria-hidden="true"></div>
+            <div class="preview-card">
+              <div class="preview-topline">
+                <div>
+                  <span class="preview-kicker">PUSAT KENDALI USAHA</span>
+                  <h2>Ringkasan Warung</h2>
+                </div>
+                <span class="preview-icon"
+                  ><i class="fa-solid fa-store"></i
+                ></span>
+              </div>
+              <div class="preview-metric">
+                <div>
+                  <span class="preview-label">Penjualan hari ini</span>
+                  <strong>Usaha Anda, satu langkah di depan</strong>
+                </div>
+                <span class="preview-metric-icon"
+                  ><i class="fa-solid fa-arrow-trend-up"></i
+                ></span>
+              </div>
+              <div class="preview-chart">
+                <div class="preview-chart-heading">
+                  <span>Gambaran aktivitas</span>
+                  <span class="preview-chart-period">Dashboard terpadu</span>
+                </div>
+                <div class="preview-bars" aria-hidden="true">
+                  <span style="--bar-height: 34%"></span>
+                  <span style="--bar-height: 49%"></span>
+                  <span style="--bar-height: 41%"></span>
+                  <span style="--bar-height: 68%"></span>
+                  <span style="--bar-height: 55%"></span>
+                  <span style="--bar-height: 82%"></span>
+                  <span style="--bar-height: 72%"></span>
+                  <span style="--bar-height: 100%"></span>
+                </div>
+                <div class="preview-chart-axis">
+                  <span>Penjualan</span>
+                  <span>Stok</span>
+                  <span>Analisis</span>
+                </div>
+              </div>
+              <div class="preview-footer">
+                <span
+                  ><i class="fa-solid fa-boxes-stacked"></i> Stok
+                  terpantau</span
+                >
+                <span
+                  ><i class="fa-solid fa-wand-magic-sparkles"></i> Insight
+                  cerdas</span
+                >
+              </div>
+            </div>
+            <div class="preview-float preview-float-left">
+              <span class="preview-float-icon"
+                ><i class="fa-solid fa-utensils"></i
+              ></span>
+              <span><strong>Menu</strong><small>Lebih terkelola</small></span>
+            </div>
+            <div class="preview-float preview-float-right">
+              <span class="preview-float-icon preview-float-orange"
+                ><i class="fa-solid fa-lightbulb"></i
+              ></span>
+              <span
+                ><strong>Insight</strong
+                ><small>Untuk keputusan Anda</small></span
+              >
+            </div>
+          </div>
+        </div>
+
+        <footer class="welcome-footer">
+          <span>ForecastBiz</span>
+          <span>Solusi sederhana untuk usaha yang terus berkembang</span>
+        </footer>
+      </div>
+    </section>
+
+    <div
+      id="app-content"
+      class="app-shell"
+      inert
+      aria-hidden="true"
+      tabindex="-1"
+    >
+      <!-- Mobile Header Bar -->
+      <header
+        class="md:hidden bg-white border-b border-slate-200 p-4 flex items-center justify-between sticky top-0 z-30"
+      >
+        <div class="flex items-center gap-2">
+          <img
+            src="LOGOO.png"
+            alt="Logo ForecastBiz"
+            class="w-8 h-8 rounded-lg object-cover"
+          />
+          <span class="font-bold text-slate-800">ForecastBiz</span>
+        </div>
+        <button
+          onclick="toggleSidebar()"
+          class="p-2 text-slate-600 hover:text-slate-800"
+        >
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </header>
+
+      <!-- Sidebar Navigation -->
+      <aside
+        id="sidebar"
+        class="fixed md:sticky top-0 inset-y-0 left-0 z-40 w-64 bg-white border-r border-slate-200 flex flex-col h-screen overflow-y-auto custom-scrollbar shrink-0 transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in-out"
+      >
+        <div
+          class="p-6 border-b border-slate-100 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3">
+            <img
+              src="LOGOO.png"
+              alt="Logo ForecastBiz"
+              class="w-10 h-10 rounded-xl object-cover"
+            />
+            <div>
+              <h1 class="font-bold text-slate-800 text-lg leading-tight">
+                ForecastBiz
+              </h1>
+              <span
+                class="text-xs text-orange-700 font-semibold uppercase tracking-wider"
+                >Asisten UMKM F&B</span
+              >
+            </div>
+          </div>
+          <button
+            onclick="toggleSidebar()"
+            class="md:hidden text-slate-400 hover:text-slate-600"
+          >
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+
+        <nav class="p-4 space-y-1 flex-1">
+          <button
+            data-tab="dashboard"
+            onclick="switchTab('dashboard')"
+            id="nav-dashboard"
+            class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-emerald-600 transition"
+          >
+            <i class="fa-solid fa-chart-line w-5"></i> Ringkasan Utama
+          </button>
+
+          <button
+            data-tab="menu-catalog"
+            onclick="switchTab('menu-catalog')"
+            id="nav-menu-catalog"
+            class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-emerald-600 transition"
+          >
+            <i class="fa-solid fa-utensils w-5"></i> Katalog Menu & Pricelist
+          </button>
+
+          <button
+            data-tab="cashier"
+            onclick="switchTab('cashier')"
+            id="nav-cashier"
+            class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-emerald-600 transition"
+          >
+            <i class="fa-solid fa-receipt w-5"></i> Catat Struk Kasir
+            (Multi-Item)
+          </button>
+
+          <button
+            data-tab="materials"
+            onclick="switchTab('materials')"
+            id="nav-materials"
+            class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-emerald-600 transition"
+          >
+            <i class="fa-solid fa-boxes w-5"></i> Bahan Baku & Pengadaan
+          </button>
+
+          <button
+            data-tab="smart-tools"
+            onclick="switchTab('smart-tools')"
+            id="nav-smart-tools"
+            class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-emerald-600 transition"
+          >
+            <i class="fa-solid fa-wand-magic-sparkles w-5"></i> Fitur Cerdas &
+            Alat Bantu
+          </button>
+
+          <button
+            data-tab="forecasting"
+            onclick="switchTab('forecasting')"
+            id="nav-forecasting"
+            class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-emerald-600 transition"
+          >
+            <i class="fa-solid fa-chart-area w-5"></i> Fitur Analytics &
+            Peramalan
+          </button>
+        </nav>
+
+        <div class="p-4 border-t border-slate-100 bg-slate-50/50">
+          <div
+            class="flex items-center gap-3 p-2 bg-white rounded-xl border border-slate-200"
+          >
+            <div
+              class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-xs"
+            >
+              UMKM
+            </div>
+            <div class="overflow-hidden">
+              <div class="text-xs font-bold text-slate-800 truncate">
+                Warung F&B Berkah
+              </div>
+              <div class="text-[10px] text-slate-500">UMKM Kuliner Malang</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="flex-1 p-4 md:p-8 max-w-7xl mx-auto w-full overflow-y-auto">
+        <!-- TAB 1: DASHBOARD UTAMA -->
+        <section id="tab-dashboard" class="tab-content space-y-6">
+          <div
+            class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+          >
+            <div>
+              <h2 class="text-2xl font-bold text-slate-800">
+                Ringkasan Utama UMKM
+              </h2>
+              <p class="text-sm text-slate-500">
+                Kelola stok, cegah bahan basi, dan analisis tren penjualan dalam
+                satu tampilan.
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button
+                onclick="openModal('modal-whatsapp')"
+                class="px-4 py-2 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded-xl font-semibold text-sm transition flex items-center gap-2 border border-emerald-200"
+              >
+                <i class="fa-brands fa-whatsapp text-emerald-600 text-base"></i>
+                Uji WA Bot Alert
+              </button>
+              <button
+                onclick="switchTab('cashier')"
+                class="px-4 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-xl font-semibold text-sm transition flex items-center gap-2 shadow-md shadow-emerald-200"
+              >
+                <i class="fa-solid fa-plus"></i> Input Struk Transaksi
+              </button>
+            </div>
+          </div>
+
+          <!-- Key Metrics Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div
+              class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between"
+            >
+              <div>
+                <span
+                  class="text-xs font-semibold uppercase tracking-wider text-slate-400"
+                  >Penjualan Hari Ini</span
+                >
+                <div
+                  class="text-2xl font-extrabold text-slate-800 mt-1"
+                  id="statTodaySales"
+                >
+                  Rp 0
+                </div>
+                <span
+                  id="realtimeStatus"
+                  class="text-xs text-emerald-600 font-medium flex items-center gap-1 mt-1"
+                >
+                  <i class="fa-solid fa-arrows-rotate"></i> Menghubungkan
+                  real-time...
+                </span>
+              </div>
+              <div
+                class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl"
+              >
+                <i class="fa-solid fa-cash-register"></i>
+              </div>
+            </div>
+
+            <div
+              class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between"
+            >
+              <div>
+                <span
+                  class="text-xs font-semibold uppercase tracking-wider text-slate-400"
+                  >Estimasi Profit</span
+                >
+                <div
+                  class="text-2xl font-extrabold text-slate-800 mt-1"
+                  id="statProfitMargin"
+                >
+                  Rp 0
+                </div>
+                <span
+                  class="text-xs text-slate-500 font-medium mt-1 block"
+                  id="statProfitMarginPercent"
+                  >Margin Total: 0%</span
+                >
+              </div>
+              <div
+                class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl"
+              >
+                <i class="fa-solid fa-coins"></i>
+              </div>
+            </div>
+
+            <div
+              class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between"
+            >
+              <div>
+                <span
+                  class="text-xs font-semibold uppercase tracking-wider text-slate-400"
+                  >Status Stok Rawan</span
+                >
+                <div
+                  class="text-2xl font-extrabold text-amber-600 mt-1"
+                  id="statLowStockCount"
+                >
+                  0 Bahan
+                </div>
+                <span class="text-xs text-amber-600 font-medium mt-1 block"
+                  ><i class="fa-solid fa-triangle-exclamation"></i> Mendekati
+                  Batas ROP</span
+                >
+              </div>
+              <div
+                class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl"
+              >
+                <i class="fa-solid fa-box-open"></i>
+              </div>
+            </div>
+
+            <div
+              class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between"
+            >
+              <div>
+                <span
+                  class="text-xs font-semibold uppercase tracking-wider text-slate-400"
+                  >Estimasi Belanja Mingguan</span
+                >
+                <div
+                  class="text-2xl font-extrabold text-slate-800 mt-1"
+                  id="statProcurementEst"
+                >
+                  Rp 0
+                </div>
+                <span class="text-xs text-slate-500 font-medium mt-1 block"
+                  >Lihat detail di tab Bahan Baku</span
+                >
+              </div>
+              <div
+                class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl"
+              >
+                <i class="fa-solid fa-cart-shopping"></i>
+              </div>
+            </div>
+
+            <div
+              class="bg-white p-5 rounded-2xl border border-rose-200 shadow-sm flex items-center justify-between"
+            >
+              <div>
+                <span
+                  class="text-xs font-semibold uppercase tracking-wider text-slate-400"
+                  >Kerugian Bahan Kadarluwarsa</span
+                >
+                <div
+                  class="text-2xl font-extrabold text-rose-600 mt-1"
+                  id="statExpiredLoss"
+                >
+                  Rp 0
+                </div>
+                <span class="text-xs text-rose-500 font-medium mt-1 block"
+                  >Sisa expired + total batch yang sudah dibuang</span
+                >
+              </div>
+              <div
+                class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl"
+              >
+                <i class="fa-solid fa-arrow-trend-down"></i>
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onclick="openModal('modal-dashboard-history')"
+            aria-haspopup="dialog"
+            aria-controls="modal-dashboard-history"
+            class="dashboard-history-trigger group flex w-full items-center justify-between gap-4 rounded-2xl border border-orange-200 bg-white p-4 text-left shadow-sm transition hover:border-orange-300 hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 sm:p-5"
+          >
+            <span class="flex min-w-0 items-center gap-3">
+              <span
+                class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-orange-50 text-orange-700"
+              >
+                <i class="fa-solid fa-calendar-days text-lg"></i>
+              </span>
+              <span class="min-w-0">
+                <span class="block font-bold text-slate-800">
+                  Histori Performa Harian
+                </span>
+                <span class="mt-1 block text-xs leading-relaxed text-slate-500">
+                  Lihat penjualan, profit, estimasi belanja, dan kerugian
+                  kadarluwarsa berdasarkan tanggal.
+                </span>
+              </span>
+            </span>
+            <span
+              class="flex shrink-0 items-center gap-2 text-sm font-semibold text-orange-700"
+            >
+              <span class="hidden sm:inline">Lihat histori</span>
+              <i
+                class="fa-solid fa-arrow-up-right-from-square transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                aria-hidden="true"
+              ></i>
+            </span>
+          </button>
+
+          <!-- Main Chart Card -->
+          <div
+            class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4"
+          >
+            <div
+              class="flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+            >
+              <div>
+                <h3 class="font-bold text-slate-800 text-lg">
+                  Grafik Prediksi Tren Penjualan Harian (Time Series)
+                </h3>
+                <p class="text-xs text-slate-500">
+                  Membandingkan aktual dengan prediksi historis dan ramalan dua
+                  hari ke depan. Aktual hari ini masih sementara.
+                </p>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="flex items-center justify-end gap-1">
+                  <span
+                    class="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-1 rounded border border-emerald-200"
+                    id="mapeScore"
+                    >Menunggu data...</span
+                  >
+                  <span
+                    class="text-slate-400 text-xs cursor-help"
+                    title="Selisih rata-rata membandingkan prediksi historis dengan aktual untuk hari yang sudah selesai. Prediksi historis hanya memakai data sebelum tanggal target."
+                    aria-label="Selisih rata-rata membandingkan prediksi historis dengan aktual untuk hari yang sudah selesai. Prediksi historis hanya memakai data sebelum tanggal target."
+                    tabindex="0"
+                  >
+                    <i class="fas fa-info-circle" aria-hidden="true"></i>
+                  </span>
+                </div>
+                <select
+                  id="forecastChartMenuSelect"
+                  onchange="updateForecastChart()"
+                  class="p-2 border border-slate-200 rounded-xl text-sm bg-slate-50 focus:ring-2 focus:ring-emerald-500 outline-none"
+                >
+                  <option value="ALL">📊 Semua Menu (Semua Kurva Tren)</option>
+                  <!-- Populated by JS -->
+                </select>
+              </div>
+            </div>
+
+            <div class="relative h-72 w-full">
+              <canvas id="dashboardForecastChart"></canvas>
+            </div>
+            <p
+              id="forecastStorageStatus"
+              class="hidden rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800"
+              role="status"
+            ></p>
+            <div
+              class="grid gap-2 rounded-xl border border-slate-200 bg-slate-50 p-3 sm:grid-cols-[minmax(12rem,0.4fr)_1fr] sm:items-center"
+            >
+              <label
+                for="salesEventAdjustment"
+                class="text-sm font-semibold text-slate-700"
+              >
+                Tandai hari esok sebagai:
+              </label>
+              <select
+                id="salesEventAdjustment"
+                onchange="updateForecastChart()"
+                class="w-full rounded-lg border border-slate-200 bg-white p-2 text-sm"
+              >
+                <option value="normal">Normal</option>
+                <option value="promo">Promo/diskon</option>
+                <option value="cuaca">Cuaca</option>
+                <option value="libur">Hari libur/acara</option>
+                <option value="viral">Bahan baru/viral</option>
+                <option value="stok_habis">Kehabisan stok</option>
+                <option value="lainnya">Lainnya</option>
+              </select>
+              <input
+                id="salesEventAdjustmentOther"
+                type="text"
+                maxlength="80"
+                oninput="updateForecastChart()"
+                class="hidden w-full rounded-lg border border-slate-200 bg-white p-2 text-sm sm:col-start-2"
+                placeholder="Tuliskan kejadian lainnya"
+                aria-label="Tuliskan kejadian lainnya"
+              />
+              <p
+                id="salesEventAdjustmentMessage"
+                class="text-xs text-slate-600 sm:col-span-2"
+                aria-live="polite"
+              >
+                Prediksi besok memakai angka normal.
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+          >
+            <div>
+              <h3 class="text-lg font-bold text-slate-800">Daftar Promo</h3>
+              <p class="text-xs text-slate-500">
+                Kelola jadwal dan lihat hasil promo menu Anda.
+              </p>
+            </div>
+            <button
+              type="button"
+              onclick="openModal('modal-promotion-list')"
+              class="shrink-0 rounded-xl bg-orange-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-orange-700"
+              aria-haspopup="dialog"
+              aria-controls="modal-promotion-list"
+            >
+              <i class="fa-solid fa-list-check mr-2"></i>Lihat Daftar Promo
+            </button>
+          </div>
+        </section>
+
+        <!-- TAB 2: KATALOG MENU & PRICELIST -->
+        <section id="tab-menu-catalog" class="tab-content hidden space-y-6">
+          <div class="flex justify-between items-center">
+            <div>
+              <h2 class="text-2xl font-bold text-slate-800">
+                Katalog Menu & Pricelist
+              </h2>
+              <p class="text-sm text-slate-500">
+                Kelola harga jual, estimasi HPP modal, serta status keaktifan
+                menu F&B toko.
+              </p>
+            </div>
+            <button
+              onclick="openMenuForm()"
+              class="px-4 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-xl font-semibold text-sm transition flex items-center gap-2"
+            >
+              <i class="fa-solid fa-plus"></i> Tambah Menu Baru
+            </button>
+          </div>
+
+          <div
+            class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden"
+          >
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr
+                    class="bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-500 uppercase tracking-wider"
+                  >
+                    <th class="p-4">Nama Menu F&B</th>
+                    <th class="p-4">Kategori</th>
+                    <th class="p-4">Harga Jual (Rp)</th>
+                    <th class="p-4">Estimasi HPP (Rp)</th>
+                    <th class="p-4">Profit / Porsi</th>
+                    <th class="p-4">Status</th>
+                    <th class="p-4 text-center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody
+                  id="menuCatalogTableBody"
+                  class="divide-y divide-slate-100 text-sm"
+                >
+                  <!-- JS Populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 3: CATAT STRUK KASIR (MULTI-ITEM) -->
+        <section id="tab-cashier" class="tab-content hidden space-y-6">
+          <div>
+            <h2 class="text-2xl font-bold text-slate-800">
+              Catat Struk Kasir (Multi-Item)
+            </h2>
+            <p class="text-sm text-slate-500">
+              Rekap pesanan pelanggan dari lembar struk transaksi harian untuk
+              menghitung omzet & peramalan otomatis.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 xl:grid-cols-[1.3fr_0.7fr] gap-6">
+            <div
+              class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4"
+            >
+              <div
+                class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <h3 class="font-bold text-slate-800 text-lg">Pilih Menu</h3>
+                <div class="flex items-center gap-2">
+                  <input
+                    id="cashierSearchInput"
+                    type="search"
+                    placeholder="Cari menu..."
+                    class="w-full sm:w-52 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm outline-none ring-0 focus:border-emerald-400"
+                  />
+                </div>
+              </div>
+
+              <div class="flex flex-wrap gap-2" id="cashierCategoryFilterWrap">
+                <select
+                  id="cashierCategoryFilter"
+                  class="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-emerald-400"
+                >
+                  <option value="Semua">Semua</option>
+                </select>
+              </div>
+
+              <div id="cashierMenuInfo" class="text-xs text-slate-500"></div>
+              <div
+                id="cashierMenuGrid"
+                class="grid grid-cols-2 gap-3 md:grid-cols-3"
+              ></div>
+            </div>
+
+            <div
+              class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4"
+            >
+              <h3 class="font-bold text-slate-800 text-lg border-b pb-2">
+                Pesanan
+              </h3>
+
+              <div class="space-y-3">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-600 mb-1"
+                    >Tanggal Transaksi</label
+                  >
+                  <input
+                    type="date"
+                    id="receiptDate"
+                    class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+                  />
+                </div>
+
+                <div class="hidden">
+                  <label class="block text-xs font-semibold text-slate-600 mb-1"
+                    >Pilih Menu</label
+                  >
+                  <select
+                    id="receiptMenuSelect"
+                    class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+                  ></select>
+                </div>
+
+                <div class="hidden grid-cols-2 gap-3">
+                  <div>
+                    <label
+                      class="block text-xs font-semibold text-slate-600 mb-1"
+                      >Jumlah Porsi</label
+                    >
+                    <input
+                      type="number"
+                      id="receiptQty"
+                      min="1"
+                      value="1"
+                      class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+                    />
+                  </div>
+                  <div class="flex items-end">
+                    <button
+                      onclick="addItemToReceipt()"
+                      class="w-full py-2.5 bg-slate-800 text-white hover:bg-slate-900 rounded-xl text-xs font-bold transition"
+                    >
+                      + Tambah Item
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="border rounded-xl p-3 bg-slate-50 space-y-2">
+                <span
+                  class="text-xs font-bold text-slate-600 block border-b pb-1"
+                  >Daftar Item dalam Struk Ini:</span
+                >
+                <div
+                  class="max-h-48 overflow-y-auto space-y-1"
+                  id="receiptItemsList"
+                >
+                  <p class="text-xs text-slate-400 italic">
+                    Belum ada item ditambahkan.
+                  </p>
+                </div>
+                <div
+                  class="pt-2 border-t flex justify-between items-center font-bold text-sm text-slate-800"
+                >
+                  <span>Total Struk:</span>
+                  <span id="receiptGrandTotal" class="text-emerald-600"
+                    >Rp 0</span
+                  >
+                </div>
+              </div>
+
+              <div
+                id="basketHint"
+                class="hidden space-y-2 rounded-xl border border-emerald-200 bg-emerald-50 p-3"
+                aria-live="polite"
+              ></div>
+
+              <div class="flex items-center gap-2">
+                <button
+                  onclick="requestReceiptSave()"
+                  class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-sm transition shadow-md shadow-emerald-200"
+                >
+                  <i class="fa-solid fa-money-bill-wave mr-1"></i> Bayar /
+                  Simpan
+                </button>
+                <button
+                  type="button"
+                  onclick="openModal('modal-receipt-history')"
+                  class="px-3 py-3 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-xl text-xs font-bold"
+                >
+                  Riwayat
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div
+          id="modal-cash-payment"
+          class="fixed inset-0 z-[55] hidden flex items-center justify-center bg-black/50 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="cashPaymentTitle"
+        >
+          <div
+            class="max-h-[90vh] w-full max-w-md space-y-4 overflow-y-auto rounded-2xl bg-white p-6 shadow-xl"
+          >
+            <div class="flex items-center justify-between border-b pb-3">
+              <div>
+                <h3
+                  id="cashPaymentTitle"
+                  class="text-lg font-bold text-slate-800"
+                >
+                  Pembayaran Tunai
+                </h3>
+                <p class="text-xs text-slate-500">
+                  Pilih nominal uang dari pelanggan.
+                </p>
+              </div>
+              <button
+                type="button"
+                onclick="closeCashPayment()"
+                aria-label="Tutup pembayaran"
+                class="text-xl font-bold text-slate-400 hover:text-slate-600"
+              >
+                &times;
+              </button>
+            </div>
+            <div class="rounded-xl bg-emerald-50 p-4 text-center">
+              <span
+                class="text-xs font-semibold uppercase tracking-wide text-emerald-700"
+              >
+                Total tagihan
+              </span>
+              <div
+                id="cashPaymentTotal"
+                class="mt-1 text-2xl font-extrabold text-emerald-800"
+              >
+                Rp 0
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <button
+                type="button"
+                data-cash-tender="exact"
+                class="rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm font-bold text-emerald-800 hover:bg-emerald-100"
+              >
+                Uang Pas
+              </button>
+              <button
+                type="button"
+                data-cash-tender="20000"
+                class="rounded-xl border border-slate-200 px-3 py-2 text-sm font-bold text-slate-700 hover:bg-slate-50"
+              >
+                Rp 20.000
+              </button>
+              <button
+                type="button"
+                data-cash-tender="50000"
+                class="rounded-xl border border-slate-200 px-3 py-2 text-sm font-bold text-slate-700 hover:bg-slate-50"
+              >
+                Rp 50.000
+              </button>
+              <button
+                type="button"
+                data-cash-tender="100000"
+                class="rounded-xl border border-slate-200 px-3 py-2 text-sm font-bold text-slate-700 hover:bg-slate-50"
+              >
+                Rp 100.000
+              </button>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-slate-500"
+                >Ukuran struk</span
+              >
+              <div class="flex gap-2">
+                <button
+                  type="button"
+                  data-print-width="58"
+                  aria-pressed="true"
+                  class="is-selected rounded-lg border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-bold text-emerald-800"
+                >
+                  58 mm
+                </button>
+                <button
+                  type="button"
+                  data-print-width="80"
+                  aria-pressed="false"
+                  class="rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-bold text-slate-600"
+                >
+                  80 mm
+                </button>
+              </div>
+            </div>
+            <label class="block space-y-1 text-xs font-semibold text-slate-600">
+              Uang diterima (Rp)
+              <input
+                id="cashTenderedInput"
+                type="number"
+                min="0"
+                step="1"
+                inputmode="numeric"
+                class="w-full rounded-xl border border-slate-200 p-3 text-lg font-bold text-slate-800 focus:border-emerald-400 focus:outline-none"
+              />
+            </label>
+            <div
+              class="flex items-center justify-between rounded-xl bg-slate-50 p-3"
+            >
+              <span class="text-sm font-semibold text-slate-600"
+                >Kembalian</span
+              >
+              <span
+                id="cashChangeAmount"
+                class="text-xl font-extrabold text-slate-800"
+                aria-live="polite"
+              >
+                Rp 0
+              </span>
+            </div>
+            <p
+              id="cashPaymentError"
+              class="hidden text-xs font-semibold text-rose-600"
+              role="alert"
+            ></p>
+            <div class="flex gap-2">
+              <button
+                type="button"
+                onclick="closeCashPayment()"
+                class="flex-1 rounded-xl bg-slate-100 px-4 py-3 text-sm font-bold text-slate-700 hover:bg-slate-200"
+              >
+                Batal
+              </button>
+              <button
+                type="button"
+                onclick="confirmReceiptPayment()"
+                class="flex-1 rounded-xl bg-emerald-600 px-4 py-3 text-sm font-bold text-white hover:bg-emerald-700"
+              >
+                Lanjut Simpan
+              </button>
+            </div>
+            <p class="text-center text-[11px] text-slate-400">
+              Pintasan: F2 cari menu · F9/Spasi bayar · Esc tutup
+            </p>
+          </div>
+        </div>
+
+        <!-- TAB 4: BAHAN BAKU & PENGADAAN -->
+        <section id="tab-materials" class="tab-content hidden space-y-6">
+          <div class="flex justify-between items-center">
+            <div>
+              <h2 class="text-2xl font-bold text-slate-800">
+                Pengelolaan Bahan Baku Mentah
+              </h2>
+              <p class="text-sm text-slate-500">
+                Atur stok fisik, harga per unit/kg, serta rekap kebutuhan
+                belanja otomatis.
+              </p>
+            </div>
+            <button
+              onclick="openMaterialForm()"
+              class="px-4 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-xl font-semibold text-sm transition flex items-center gap-2"
+            >
+              <i class="fa-solid fa-plus"></i> Tambah Bahan Baku Baru
+            </button>
+          </div>
+
+          <div
+            class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden"
+          >
+            <div
+              class="p-4 bg-slate-50 border-b border-slate-200 flex justify-between items-center"
+            >
+              <h3 class="font-bold text-slate-700 text-sm">
+                Daftar Bahan Baku & Estimasi Rekomendasi Belanja
+              </h3>
+              <span
+                class="text-xs font-bold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full"
+                id="grandProcurementCostText"
+                >Grand Total Belanja: Rp 0</span
+              >
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr
+                    class="bg-white border-b border-slate-200 text-xs font-bold text-slate-500 uppercase"
+                  >
+                    <th class="p-4">Nama Bahan Mentah</th>
+                    <th class="p-4">Stok Fisik</th>
+                    <th class="p-4">Batas ROP (Aman)</th>
+                    <th class="p-4">Harga Satuan (Rp)</th>
+                    <th class="p-4">Batch EXP</th>
+                    <th class="p-4">Rekomendasi Beli (7 Hari)</th>
+                    <th class="p-4 text-right">Subtotal Biaya (Rp)</th>
+                    <th class="p-4 text-center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody
+                  id="rawMaterialsTableBody"
+                  class="divide-y divide-slate-100 text-sm"
+                >
+                  <!-- JS Populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div
+            class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4"
+          >
+            <div
+              class="flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+            >
+              <div>
+                <h3 class="font-bold text-slate-800 text-lg">
+                  Grafik Perubahan Harga Bahan Baku
+                </h3>
+                <p class="text-xs text-slate-500">
+                  Pantau riwayat harga untuk membantu menentukan waktu pembelian
+                  terbaik.
+                </p>
+              </div>
+              <select
+                id="materialPriceChartSelect"
+                onchange="updateMaterialPriceChart()"
+                class="p-2 border border-slate-200 rounded-xl text-sm bg-slate-50 focus:ring-2 focus:ring-emerald-500 outline-none"
+              ></select>
+            </div>
+            <div class="relative h-72 w-full">
+              <canvas id="materialPriceChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 5: FITUR CERDAS & ALAT BANTU -->
+        <section id="tab-smart-tools" class="tab-content hidden space-y-6">
+          <div>
+            <h2 class="text-2xl font-bold text-slate-800">
+              Fitur Cerdas & Alat Bantu Operasional
+            </h2>
+            <p class="text-sm text-slate-500">
+              Gunakan kalkulator optimasi persediaan berbasis data nyata toko
+              untuk meningkatkan efisiensi.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- ROP Card -->
+            <div
+              class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-emerald-500 transition space-y-3"
+            >
+              <div
+                class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold"
+              >
+                <i class="fa-solid fa-calculator"></i>
+              </div>
+              <h3 class="font-bold text-slate-800">
+                Safety Stock & ROP Calculator
+              </h3>
+              <p class="text-xs text-slate-500">
+                Hitung batas stok pengaman & titik pesan ulang berbasis
+                pemakaian mingguan dan lead time supplier.
+              </p>
+              <button
+                onclick="openModal('modal-rop')"
+                class="w-full py-2 bg-slate-100 hover:bg-emerald-600 hover:text-white text-slate-700 rounded-xl font-bold text-xs transition"
+              >
+                Buka Kalkulator ROP
+              </button>
+            </div>
+
+            <!-- EOQ Card -->
+            <div
+              class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-emerald-500 transition space-y-3"
+            >
+              <div
+                class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold"
+              >
+                <i class="fa-solid fa-truck-ramp-box"></i>
+              </div>
+              <h3 class="font-bold text-slate-800">
+                EOQ & Batas Kesegaran Bahan
+              </h3>
+              <p class="text-xs text-slate-500">
+                Hitung jumlah grosir paling hemat memperhitungkan jarak supplier
+                (km), ongkir, dan batas kadarluwarsa bahan.
+              </p>
+              <button
+                onclick="openModal('modal-eoq')"
+                class="w-full py-2 bg-slate-100 hover:bg-emerald-600 hover:text-white text-slate-700 rounded-xl font-bold text-xs transition"
+              >
+                Buka Kalkulator EOQ
+              </button>
+            </div>
+
+            <!-- FEFO Card -->
+            <div
+              class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-emerald-500 transition space-y-3"
+            >
+              <div
+                class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold"
+              >
+                <i class="fa-solid fa-clock-rotate-left"></i>
+              </div>
+              <h3 class="font-bold text-slate-800">
+                Manajemen FEFO (Expiry Warning)
+              </h3>
+              <p class="text-xs text-slate-500">
+                Pantau batch bahan baku terdekat dengan tanggal kadaluwarsa
+                untuk mengaktifkan promo otomatis.
+              </p>
+              <button
+                onclick="openModal('modal-fefo')"
+                class="w-full py-2 bg-slate-100 hover:bg-emerald-600 hover:text-white text-slate-700 rounded-xl font-bold text-xs transition"
+              >
+                Buka Manajemen FEFO
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 6: ANALYTICS & TIME SERIES -->
+        <section id="tab-forecasting" class="tab-content hidden space-y-6">
+          <div>
+            <h2 class="text-2xl font-bold text-slate-800">
+              Analytics & Time Series Forecasting
+            </h2>
+            <p class="text-sm text-slate-500">
+              Pilih salah satu untuk membuka.
+            </p>
+          </div>
+
+          <div id="analyticsLauncherArea" class="space-y-6"></div>
+          <div id="analyticsVault" class="hidden"></div>
+
+          <div
+            id="promoSimulatorCard"
+            class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-5"
+          >
+            <div>
+              <h3 class="font-bold text-slate-800 text-lg">Simulasi Promo:</h3>
+              <p class="mt-1 text-xs text-slate-500">
+                Lihat dampak diskon terhadap untung sebelum menjalankan promo.
+              </p>
+            </div>
+            <div class="grid gap-4 md:grid-cols-2">
+              <label class="space-y-1 text-xs font-semibold text-slate-600">
+                Pilih menu
+                <select
+                  id="promoMenuSelect"
+                  class="w-full rounded-xl border border-slate-200 bg-white p-2.5 text-sm font-normal"
+                ></select>
+              </label>
+              <div
+                id="promoCostSummary"
+                class="rounded-xl bg-slate-50 p-3 text-sm text-slate-700"
+              ></div>
+              <p
+                id="promoCostWarning"
+                class="hidden rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800 md:col-span-2"
+              ></p>
+
+              <div class="md:col-span-2">
+                <h4 class="text-sm font-bold text-slate-800">
+                  Atur promo secara manual
+                </h4>
+                <p class="mt-1 text-xs text-slate-500">
+                  Isi diskon dalam persen atau harga promo dalam rupiah. Nilai
+                  lainnya dan nominal potongan akan dihitung otomatis.
+                </p>
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="block text-xs font-semibold text-slate-600"
+                  for="promoDiscountPct"
+                >
+                  Diskon (%)
+                </label>
+                <input
+                  id="promoDiscountPct"
+                  type="number"
+                  min="0.1"
+                  max="99.9"
+                  step="0.1"
+                  inputmode="decimal"
+                  class="w-full rounded-xl border border-slate-200 p-2.5 text-sm"
+                  placeholder="Contoh: 10"
+                />
+                <div class="space-y-1">
+                  <div
+                    class="flex items-center justify-between text-[11px] text-slate-500"
+                  >
+                    <span>Diskon cepat</span>
+                    <span
+                      id="promoDiscountSliderValue"
+                      class="font-bold text-emerald-700"
+                      >5%</span
+                    >
+                  </div>
+                  <input
+                    id="promoDiscountSlider"
+                    type="range"
+                    min="5"
+                    max="50"
+                    step="1"
+                    value="5"
+                    aria-label="Geser persentase diskon promo"
+                    class="w-full accent-emerald-600"
+                  />
+                </div>
+                <div class="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    data-promo-discount="5"
+                    class="rounded-lg border px-3 py-1 text-xs hover:bg-emerald-50"
+                  >
+                    5%
+                  </button>
+                  <button
+                    type="button"
+                    data-promo-discount="10"
+                    class="rounded-lg border px-3 py-1 text-xs hover:bg-emerald-50"
+                  >
+                    10%
+                  </button>
+                  <button
+                    type="button"
+                    data-promo-discount="15"
+                    class="rounded-lg border px-3 py-1 text-xs hover:bg-emerald-50"
+                  >
+                    15%
+                  </button>
+                  <button
+                    type="button"
+                    data-promo-discount="20"
+                    class="rounded-lg border px-3 py-1 text-xs hover:bg-emerald-50"
+                  >
+                    20%
+                  </button>
+                  <button
+                    type="button"
+                    data-promo-discount="30"
+                    class="rounded-lg border px-3 py-1 text-xs hover:bg-emerald-50"
+                  >
+                    30%
+                  </button>
+                </div>
+                <p
+                  id="promoDiscountAmount"
+                  class="text-xs font-normal text-emerald-700"
+                  aria-live="polite"
+                >
+                  Nominal potongan akan ditampilkan di sini.
+                </p>
+              </div>
+              <label class="space-y-1 text-xs font-semibold text-slate-600">
+                Harga promo (Rp)
+                <input
+                  id="promoPricePromo"
+                  type="number"
+                  min="1"
+                  step="any"
+                  inputmode="numeric"
+                  class="w-full rounded-xl border border-slate-200 p-2.5 text-sm font-normal"
+                  placeholder="Isi diskon atau harga promo"
+                />
+              </label>
+
+              <label class="space-y-1 text-xs font-semibold text-slate-600">
+                Penjualan normal per hari (porsi)
+                <input
+                  id="promoBaselinePortions"
+                  type="number"
+                  min="0"
+                  step="0.1"
+                  inputmode="decimal"
+                  class="w-full rounded-xl border border-slate-200 p-2.5 text-sm font-normal"
+                  placeholder="Memuat data..."
+                />
+                <span
+                  id="promoBaselineSource"
+                  class="block font-normal text-slate-500"
+                >
+                  Memuat data...
+                </span>
+              </label>
+              <label class="space-y-1 text-xs font-semibold text-slate-600">
+                Perkiraan kenaikan penjualan jika promo (%)
+                <input
+                  id="promoUpliftPct"
+                  type="number"
+                  step="0.1"
+                  inputmode="decimal"
+                  class="w-full rounded-xl border border-slate-200 p-2.5 text-sm font-normal"
+                  placeholder="Boleh negatif"
+                />
+                <span
+                  id="promoUpliftSource"
+                  class="block font-normal text-slate-500"
+                >
+                  Memuat data...
+                </span>
+                <span
+                  id="promoUpliftPortions"
+                  class="block font-normal text-emerald-700"
+                  aria-live="polite"
+                >
+                  Perkiraan jumlah porsi akan ditampilkan di sini.
+                </span>
+              </label>
+              <div class="md:col-span-2 space-y-2">
+                <div class="text-xs font-semibold text-slate-600">
+                  Hari promo (opsional)
+                </div>
+                <div id="promoWeekdayBtns" class="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    data-promo-weekday="1"
+                    aria-pressed="false"
+                    class="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-emerald-500"
+                  >
+                    Sen
+                  </button>
+                  <button
+                    type="button"
+                    data-promo-weekday="2"
+                    aria-pressed="false"
+                    class="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-emerald-500"
+                  >
+                    Sel
+                  </button>
+                  <button
+                    type="button"
+                    data-promo-weekday="3"
+                    aria-pressed="false"
+                    class="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-emerald-500"
+                  >
+                    Rab
+                  </button>
+                  <button
+                    type="button"
+                    data-promo-weekday="4"
+                    aria-pressed="false"
+                    class="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-emerald-500"
+                  >
+                    Kam
+                  </button>
+                  <button
+                    type="button"
+                    data-promo-weekday="5"
+                    aria-pressed="false"
+                    class="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-emerald-500"
+                  >
+                    Jum
+                  </button>
+                  <button
+                    type="button"
+                    data-promo-weekday="6"
+                    aria-pressed="false"
+                    class="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-emerald-500"
+                  >
+                    Sab
+                  </button>
+                  <button
+                    type="button"
+                    data-promo-weekday="0"
+                    aria-pressed="false"
+                    class="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-emerald-500"
+                  >
+                    Min
+                  </button>
+                </div>
+                <p class="text-[11px] text-slate-500">
+                  Pilih hari jika promo hanya berlaku di hari tertentu.
+                  Penjualan normal akan memakai rata-rata hari itu.
+                </p>
+              </div>
+            </div>
+
+            <div
+              id="promoPlannedNote"
+              class="hidden rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-xs text-emerald-800"
+            ></div>
+            <div
+              id="promoResult"
+              class="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700"
+              aria-live="polite"
+            >
+              Pilih menu dan masukkan harga promo untuk mulai simulasi.
+            </div>
+            <div class="space-y-1">
+              <button
+                id="launchPromotionButton"
+                type="button"
+                disabled
+                class="rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Jalankan promo ini
+              </button>
+              <p id="launchPromotionHelp" class="text-xs text-slate-500">
+                Isi harga promo dan pastikan menu menghasilkan untung.
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <h4 class="font-bold text-slate-800">
+                Perbandingan beberapa pilihan diskon
+              </h4>
+              <div class="overflow-x-auto rounded-xl border border-slate-200">
+                <table class="w-full min-w-[680px] text-left text-xs">
+                  <thead class="bg-slate-50 text-slate-600">
+                    <tr>
+                      <th class="p-3">Diskon</th>
+                      <th class="p-3">Harga promo</th>
+                      <th class="p-3">Untung per porsi</th>
+                      <th class="p-3">Penjualan harus naik</th>
+                      <th class="p-3">Perkiraan hasil</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    id="promoTableBody"
+                    class="divide-y divide-slate-100"
+                  ></tbody>
+                </table>
+              </div>
+            </div>
+            <p class="text-[11px] text-slate-500">
+              Ini simulasi, bukan jaminan. Hasil nyata tergantung respons
+              pelanggan.
+            </p>
+          </div>
+
+          <section
+            id="menuEngCard"
+            class="space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+          >
+            <div
+              class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between"
+            >
+              <div>
+                <h3 class="text-lg font-bold text-slate-800">Peta Menu:</h3>
+                <p class="mt-1 text-xs text-slate-500">
+                  Lihat menu mana yang laris, mana yang untungnya besar, dan apa
+                  yang sebaiknya dilakukan.
+                </p>
+              </div>
+              <label class="space-y-1 text-xs font-semibold text-slate-600">
+                Periode penjualan
+                <select
+                  id="menuEngPeriod"
+                  class="block rounded-xl border border-slate-200 bg-white p-2.5 text-sm font-normal"
+                >
+                  <option value="14">14 hari</option>
+                  <option value="30" selected>30 hari</option>
+                  <option value="90">90 hari</option>
+                </select>
+              </label>
+            </div>
+            <p
+              id="menuEngStatus"
+              class="text-sm text-slate-700"
+              aria-live="polite"
+            >
+              Memuat data penjualan...
+            </p>
+            <p id="menuEngNotes" class="text-xs text-slate-500"></p>
+            <p
+              id="menuEngThreshold"
+              class="rounded-xl bg-slate-50 p-3 text-xs leading-5 text-slate-600"
+            ></p>
+            <div id="menuEngGrid" class="space-y-3"></div>
+            <div class="space-y-2">
+              <h4 class="font-bold text-slate-800">Rincian menu</h4>
+              <div class="overflow-x-auto rounded-xl border border-slate-200">
+                <table
+                  id="menuEngTable"
+                  class="w-full min-w-[760px] text-left text-xs"
+                >
+                  <thead class="bg-slate-50 text-slate-600">
+                    <tr>
+                      <th class="p-3">Menu</th>
+                      <th class="p-3">Terjual</th>
+                      <th class="p-3">Untung per porsi</th>
+                      <th id="menuEngProfitHeader" class="p-3">
+                        Total untung periode
+                      </th>
+                      <th id="menuEngContributionHeader" class="p-3">
+                        Menyumbang (% dari total untung)
+                      </th>
+                      <th id="menuEngClassHeader" class="p-3">Kelompok</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    id="menuEngTableBody"
+                    class="divide-y divide-slate-100"
+                  ></tbody>
+                </table>
+              </div>
+            </div>
+            <div id="menuEngActions" class="hidden space-y-3"></div>
+            <div id="menuEngNewMenus" class="hidden space-y-2"></div>
+            <p class="text-[11px] text-slate-500">
+              Pengelompokan ini membandingkan menu-menu di warung Anda sendiri,
+              bukan standar dari luar. Hasilnya berubah mengikuti data penjualan
+              terbaru. Ini panduan, bukan perintah.
+            </p>
+          </section>
+
+          <section
+            id="basketCard"
+            class="space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+          >
+            <div
+              class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between"
+            >
+              <div>
+                <h3 class="text-lg font-bold text-slate-800">
+                  Menu yang Sering Dibeli Bersamaan
+                </h3>
+                <p class="mt-1 text-xs text-slate-500">
+                  Lihat menu yang sering dipesan satu pelanggan sekaligus, lalu
+                  tawarkan di kasir untuk menambah untung.
+                </p>
+              </div>
+              <label class="space-y-1 text-xs font-semibold text-slate-600">
+                Periode penjualan
+                <select
+                  id="basketPeriod"
+                  class="block rounded-xl border border-slate-200 bg-white p-2.5 text-sm font-normal"
+                >
+                  <option value="30">30 hari</option>
+                  <option value="60" selected>60 hari</option>
+                  <option value="90">90 hari</option>
+                </select>
+              </label>
+            </div>
+            <p
+              id="basketStatus"
+              class="text-sm text-slate-700"
+              aria-live="polite"
+            >
+              Memuat data penjualan...
+            </p>
+            <div id="basketSummary" class="hidden"></div>
+            <div id="basketRecs" class="hidden space-y-3"></div>
+            <div id="basketRare" class="hidden space-y-3"></div>
+            <div
+              id="basketSim"
+              class="hidden space-y-3 rounded-xl border border-slate-200 bg-slate-50 p-4"
+            ></div>
+            <p
+              id="basketNote"
+              class="hidden text-[11px] leading-5 text-slate-500"
+            ></p>
+          </section>
+
+          <div
+            id="weekdayCard"
+            class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4"
+          >
+            <div
+              class="flex flex-col sm:flex-row sm:items-start justify-between gap-3"
+            >
+              <div>
+                <h3 class="font-bold text-slate-800 text-lg">
+                  Hari Ramai dan Sepi per Menu
+                </h3>
+                <p class="mt-1 text-xs text-slate-500">
+                  Lihat hari apa penjualan tiap menu paling sepi dan paling
+                  ramai, lalu rencanakan promo dengan lebih tepat.
+                </p>
+              </div>
+              <label class="space-y-1 text-xs font-semibold text-slate-600">
+                Periode
+                <select
+                  id="weekdayPeriod"
+                  class="block rounded-xl border border-slate-200 bg-white p-2.5 text-sm font-normal"
+                >
+                  <option value="28">28 hari terakhir (4 minggu)</option>
+                  <option value="56">56 hari terakhir (8 minggu)</option>
+                </select>
+              </label>
+            </div>
+            <p id="weekdayStatus" class="text-sm text-slate-700">
+              Memuat data penjualan...
+            </p>
+            <p id="weekdaySummary" class="text-xs text-slate-500"></p>
+            <div
+              id="weekdayGuide"
+              class="hidden rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs text-slate-600 leading-5"
+            >
+              1) Lihat hari yang paling sepi untuk menu Anda. 2) Tekan
+              Rencanakan promo, lalu cek di Simulasi Promo apakah diskonnya
+              untung atau rugi. 3) Jalankan promo minimal 4 hari promo (misalnya
+              4 kali Selasa) supaya hasilnya bisa dinilai. 4) Selama promo
+              berjalan: jangan ubah harga di Katalog Menu, isi tanggal transaksi
+              dengan benar di Catat Struk Kasir, dan jalankan satu promo per
+              menu. 5) Setelah selesai, baca hasilnya di Rekam Jejak Promo.
+              Promo di hari sepi belum tentu untung; hasil nyata tergantung
+              pelanggan Anda.
+            </div>
+            <div id="weekdayRows" class="space-y-3"></div>
+            <div id="weekdayNewMenus" class="space-y-2"></div>
+            <p id="weekdayNote" class="text-[11px] leading-5 text-slate-500">
+              Ini kecenderungan dari data penjualan Anda, bukan kepastian.
+              Tanggal merah, cuaca, dan acara bisa mempengaruhi hasil. Promo di
+              hari sepi belum tentu untung: simulasikan dulu, jalankan minimal 4
+              hari promo, lalu baca hasilnya di Rekam Jejak Promo.
+            </p>
+          </div>
+
+          <div
+            id="promoTrackCard"
+            class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4"
+          >
+            <div>
+              <h3 class="font-bold text-slate-800 text-lg">
+                Rekam Jejak Promo
+              </h3>
+              <p class="mt-1 text-xs text-slate-500">
+                Lihat hasil promo yang sudah selesai dan bandingkan apakah
+                benar-benar untung atau rugi.
+              </p>
+            </div>
+            <p id="promoTrackStatus" class="text-sm text-slate-700">
+              Memuat data promo...
+            </p>
+            <p id="promoTrackSummary" class="text-xs text-slate-500"></p>
+            <div id="promoTrackList" class="space-y-2"></div>
+            <p
+              id="promoTrackNote"
+              class="text-[11px] leading-5 text-slate-500"
+            ></p>
+          </div>
+
+          <div
+            id="aiAdvisorCard"
+            class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4"
+          >
+            <div
+              class="flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+            >
+              <div>
+                <h3 class="font-bold text-slate-800 text-lg">
+                  <i class="fa-solid fa-robot text-emerald-600 mr-2"></i> AI
+                  Advisor Promo & Profit
+                </h3>
+                <p class="text-xs text-slate-500">
+                  Menganalisis penjualan, resep, harga bahan, dan stok expired
+                  untuk memberi promo yang tetap untung.
+                </p>
+              </div>
+            </div>
+            <div
+              id="aiRecommendationSummary"
+              class="grid grid-cols-1 md:grid-cols-2 gap-3"
+            ></div>
+            <div id="aiRecommendationList" class="space-y-3"></div>
+            <div class="border-t pt-4 space-y-2">
+              <label
+                for="aiQuestion"
+                class="block text-xs font-bold text-slate-700"
+                >Konsultasi dengan AI Advisor</label
+              >
+              <div class="flex flex-col sm:flex-row gap-2">
+                <input
+                  id="aiQuestion"
+                  type="text"
+                  placeholder="Contoh: menu apa yang sebaiknya dipromosikan hari ini?"
+                  class="flex-1 p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+                />
+                <button
+                  onclick="askAiAdvisor()"
+                  class="px-4 py-2.5 bg-slate-800 text-white hover:bg-slate-900 rounded-xl text-sm font-bold"
+                >
+                  <i class="fa-solid fa-paper-plane mr-1"></i>Tanya AI
+                </button>
+              </div>
+              <div
+                id="aiConsultationAnswer"
+                class="hidden p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-700"
+              ></div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <div
+        id="modal-promotion-list"
+        class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/50 p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="promotionListTitle"
+        onclick="
+          if (event.target === this) closeModal('modal-promotion-list');
+        "
+      >
+        <section
+          class="max-h-[90vh] w-full max-w-6xl overflow-hidden rounded-2xl bg-white shadow-xl"
+          onclick="event.stopPropagation()"
+        >
+          <header
+            class="flex items-start justify-between gap-4 border-b border-slate-200 p-5"
+          >
+            <div>
+              <h2
+                id="promotionListTitle"
+                class="text-lg font-bold text-slate-800"
+              >
+                Daftar Promo
+              </h2>
+              <p class="mt-1 text-xs text-slate-500">
+                Kelola jadwal dan lihat hasil promo menu Anda.
+              </p>
+            </div>
+            <button
+              type="button"
+              onclick="closeModal('modal-promotion-list')"
+              class="rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-800"
+              aria-label="Tutup daftar promo"
+            >
+              <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+          </header>
+          <div class="max-h-[calc(90vh-88px)] overflow-auto p-5">
+            <div class="overflow-x-auto rounded-xl border border-slate-200">
+              <table class="w-full min-w-[760px] text-left text-sm">
+                <thead class="bg-slate-50 text-xs uppercase text-slate-500">
+                  <tr>
+                    <th class="p-3">Menu</th>
+                    <th class="p-3">Harga promo</th>
+                    <th class="p-3">Berlaku</th>
+                    <th class="p-3">Status</th>
+                    <th class="p-3">Hasil</th>
+                    <th class="p-3">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody
+                  id="promotionsTableBody"
+                  class="divide-y divide-slate-100"
+                ></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div
+        id="modal-dashboard-history"
+        class="dashboard-history-modal fixed inset-0 z-[70] hidden items-center justify-center"
+        onclick="
+          if (event.target === this) closeModal('modal-dashboard-history');
+        "
+      >
+        <section
+          class="dashboard-history-dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="dashboardHistoryTitle"
+          aria-describedby="dashboardHistoryDescription"
+          onclick="event.stopPropagation()"
+        >
+          <header class="dashboard-history-header">
+            <div class="min-w-0">
+              <h2
+                id="dashboardHistoryTitle"
+                class="text-base font-bold text-slate-800 sm:text-lg"
+              >
+                Histori Performa Harian
+              </h2>
+              <p
+                id="dashboardHistoryDescription"
+                class="mt-1 text-xs leading-relaxed text-slate-500 sm:text-sm"
+              >
+                Lihat penjualan, profit, estimasi belanja, dan kerugian
+                kadarluwarsa berdasarkan tanggal.
+              </p>
+            </div>
+            <button
+              type="button"
+              onclick="closeModal('modal-dashboard-history')"
+              class="dashboard-history-close"
+              aria-label="Tutup histori performa harian"
+            >
+              <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            </button>
+          </header>
+          <div
+            class="dashboard-history-table-wrap"
+            tabindex="0"
+            aria-label="Tabel histori performa harian, geser ke samping untuk melihat semua kolom"
+          >
+            <table class="dashboard-history-table w-full text-left">
+              <thead>
+                <tr
+                  class="border-b border-slate-200 bg-slate-50 text-[10px] font-bold uppercase tracking-wide text-slate-500 sm:text-xs"
+                >
+                  <th class="p-3">Tanggal</th>
+                  <th class="p-3">Penjualan</th>
+                  <th class="p-3">Profit</th>
+                  <th class="p-3">Estimasi Belanja</th>
+                  <th class="p-3">Kerugian Expired</th>
+                </tr>
+              </thead>
+              <tbody
+                id="dashboardHistoryBody"
+                class="divide-y divide-slate-100 text-xs sm:text-sm"
+              ></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <div
+        id="analyticsPopup"
+        class="fixed inset-0 z-[45] hidden"
+        aria-hidden="true"
+      >
+        <div
+          class="absolute inset-0 bg-black/50 backdrop-blur-sm"
+          data-analytics-close="true"
+        ></div>
+        <div
+          class="relative mx-auto flex min-h-screen w-full max-w-5xl items-center justify-center p-0 sm:p-6"
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="analyticsPopupTitle"
+            class="analytics-popup-panel w-full overflow-hidden rounded-none border border-slate-200 bg-white shadow-2xl sm:rounded-2xl"
+          >
+            <div
+              class="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-white/95 px-5 py-4 backdrop-blur-sm"
+            >
+              <div class="flex items-center gap-3">
+                <div
+                  class="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-100 text-lg"
+                >
+                  <i id="analyticsPopupIcon" class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3
+                  id="analyticsPopupTitle"
+                  tabindex="-1"
+                  class="text-lg font-bold text-slate-800 outline-none"
+                >
+                  Analytics
+                </h3>
+              </div>
+              <button
+                type="button"
+                class="flex h-9 w-9 items-center justify-center rounded-lg text-xl text-slate-500 transition hover:bg-slate-100 hover:text-slate-800"
+                data-analytics-close="true"
+                aria-label="Tutup popup"
+              >
+                &times;
+              </button>
+            </div>
+            <div
+              id="analyticsPopupBody"
+              class="max-h-[90vh] overflow-y-auto custom-scrollbar"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL 1: KALKULATOR ROP -->
+      <div
+        id="modal-rop"
+        class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4"
+      >
+        <div
+          class="bg-white rounded-2xl p-6 max-w-md w-full shadow-xl space-y-4"
+        >
+          <div class="flex justify-between items-center border-b pb-2">
+            <h3 class="font-bold text-slate-800">
+              Kalkulator ROP & Safety Stock
+            </h3>
+            <button
+              onclick="closeModal('modal-rop')"
+              class="text-slate-400 hover:text-slate-600 text-xl font-bold"
+            >
+              &times;
+            </button>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1"
+              >Pilih Bahan Mentah</label
+            >
+            <select
+              id="ropMaterialSelect"
+              onchange="updateROPDemandInput()"
+              class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+            ></select>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Lead Time Supplier (Hari)</label
+              >
+              <input
+                type="number"
+                id="ropLeadTime"
+                value="2"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Pemakaian per Minggu</label
+              >
+              <select
+                id="ropDemandMode"
+                onchange="updateROPDemandInput()"
+                class="w-full mb-2 p-2 border rounded-xl text-xs bg-slate-50 focus:ring-2 focus:ring-emerald-500 outline-none"
+              >
+                <option value="auto">Otomatis dari penjualan 7 hari</option>
+                <option value="manual">Input manual</option>
+              </select>
+              <input
+                type="number"
+                id="ropWeeklyDemand"
+                min="0"
+                step="0.01"
+                value="70"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+              <span
+                id="ropDemandSource"
+                class="text-[10px] text-slate-500 block mt-1"
+              ></span>
+            </div>
+          </div>
+          <button
+            onclick="calculateROP()"
+            class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold text-sm hover:bg-emerald-700 transition"
+          >
+            Hitung & Update ROP
+          </button>
+          <div
+            id="ropResult"
+            class="hidden p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs space-y-1 text-slate-700"
+          ></div>
+        </div>
+      </div>
+
+      <!-- MODAL 2: KALKULATOR EOQ (DENGAN BATAS KESEGARAN BAHAN) -->
+      <div
+        id="modal-eoq"
+        class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4"
+      >
+        <div
+          class="bg-white rounded-2xl p-6 max-w-md w-full shadow-xl space-y-4 max-h-[90vh] overflow-y-auto"
+        >
+          <div class="flex justify-between items-center border-b pb-2">
+            <h3 class="font-bold text-slate-800">
+              EOQ & Batas Kesegaran Bahan Baku
+            </h3>
+            <button
+              onclick="closeModal('modal-eoq')"
+              class="text-slate-400 hover:text-slate-600 text-xl font-bold"
+            >
+              &times;
+            </button>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1"
+              >Pilih Bahan Baku Mentah</label
+            >
+            <select
+              id="eoqMaterialSelect"
+              onchange="updateEOQInputs()"
+              class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+            ></select>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Penggunaan Harian (kg/L/Pcs)</label
+              >
+              <select
+                id="eoqUsageMode"
+                onchange="updateEOQInputs()"
+                class="w-full mb-2 p-2 border rounded-xl text-xs bg-slate-50 focus:ring-2 focus:ring-emerald-500 outline-none"
+              >
+                <option value="auto">Otomatis dari penjualan 7 hari</option>
+                <option value="manual">Input manual</option>
+              </select>
+              <input
+                type="number"
+                id="eoqDailyUsage"
+                min="0"
+                step="0.01"
+                value="10"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+              <span
+                id="eoqUsageSource"
+                class="text-[10px] text-slate-500 block mt-1"
+              ></span>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Harga per kg/L/Pcs (Rp)</label
+              >
+              <select
+                id="eoqPriceMode"
+                onchange="updateEOQInputs()"
+                class="w-full mb-2 p-2 border rounded-xl text-xs bg-slate-50 focus:ring-2 focus:ring-emerald-500 outline-none"
+              >
+                <option value="auto">Otomatis dari harga bahan</option>
+                <option value="manual">Input manual</option>
+              </select>
+              <input
+                type="number"
+                id="eoqMaterialPrice"
+                min="0"
+                step="1"
+                value="35000"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+              <span
+                id="eoqPriceSource"
+                class="text-[10px] text-slate-500 block mt-1"
+              ></span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Jarak ke Supplier (km)</label
+              >
+              <input
+                type="number"
+                id="eoqDistance"
+                value="5"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Ongkir / Bensin per km (Rp)</label
+              >
+              <input
+                type="number"
+                id="eoqTransportRate"
+                value="3000"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1"
+              >Daya Tahan / Batas Simpan Bahan (Hari)</label
+            >
+            <input
+              type="number"
+              id="eoqShelfLife"
+              value="3"
+              placeholder="Contoh: 3 hari di chiller/kulkas"
+              class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+            />
+            <span class="text-[10px] text-slate-400 block mt-1"
+              >Mencegah bahan keburu busuk/basi jika hasil hitungan grosir
+              terlalu banyak.</span
+            >
+          </div>
+
+          <button
+            onclick="calcEOQ()"
+            class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold text-sm hover:bg-emerald-700 transition"
+          >
+            Hitung Rekomendasi Belanja Paling Hemat & Segar
+          </button>
+
+          <div
+            id="eoqResultBox"
+            class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 space-y-2 text-xs"
+          >
+            <div class="font-bold text-emerald-800 uppercase tracking-wide">
+              Hasil Rekomendasi Belanja:
+            </div>
+            <div
+              class="text-xl font-black text-emerald-700"
+              id="eoqRecommendedQty"
+            >
+              0 Unit / Pesanan
+            </div>
+            <div class="text-slate-600 font-semibold" id="eoqFrequencyText">
+              Frekuensi Belanja: -
+            </div>
+            <div
+              id="eoqFreshnessAlert"
+              class="hidden p-2.5 bg-amber-50 border border-amber-200 rounded-lg text-amber-800 text-[11px] leading-relaxed"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL 3: TAMBAH MENU BARU -->
+      <div
+        id="modal-add-menu"
+        class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4"
+      >
+        <div
+          class="bg-white rounded-2xl p-6 max-w-md w-full shadow-xl space-y-4"
+        >
+          <div class="flex justify-between items-center border-b pb-2">
+            <h3 id="menuFormTitle" class="font-bold text-slate-800">
+              Tambah Menu F&B Baru
+            </h3>
+            <button
+              onclick="closeModal('modal-add-menu')"
+              class="text-slate-400 hover:text-slate-600 text-xl font-bold"
+            >
+              &times;
+            </button>
+          </div>
+          <input type="hidden" id="editingMenuId" />
+          <input type="hidden" id="newMenuPhotoRemove" />
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1"
+              >Nama Menu</label
+            >
+            <input
+              type="text"
+              id="newMenuName"
+              placeholder="Contoh: Gurami Bakar Madu"
+              class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+            />
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="col-span-2">
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Kategori</label
+              >
+              <select
+                id="newMenuCategory"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              >
+                <option value="Makanan">Makanan</option>
+                <option value="Minuman">Minuman</option>
+                <option value="Camilan">Camilan</option>
+                <option value="Paket">Paket</option>
+                <option value="Lainnya">Lainnya</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Harga Jual (Rp)</label
+              >
+              <input
+                type="number"
+                id="newMenuPrice"
+                placeholder="35000"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Estimasi HPP (Rp)</label
+              >
+              <input
+                type="number"
+                id="newMenuCost"
+                placeholder="20000"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+            </div>
+            <div class="col-span-2">
+              <label
+                class="block text-xs font-semibold text-slate-600 mb-1"
+                for="newMenuOtherCost"
+              >
+                Biaya lain per porsi (Rp) - opsional
+              </label>
+              <input
+                type="number"
+                id="newMenuOtherCost"
+                min="0"
+                step="1"
+                placeholder="0"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+              <p class="mt-1 text-[10px] text-slate-500">
+                Kemasan, gas, komisi ojol, dll. yang BELUM termasuk di Estimasi
+                HPP. Kosongkan jika sudah termasuk.
+              </p>
+            </div>
+          </div>
+          <div class="border-t pt-4 space-y-3">
+            <div>
+              <div class="flex items-center justify-between">
+                <h4 class="font-bold text-slate-800 text-sm">Foto Menu</h4>
+                <button
+                  type="button"
+                  onclick="openMenuPhotoPicker()"
+                  class="px-3 py-1.5 bg-slate-100 hover:bg-emerald-100 text-emerald-700 rounded-lg text-xs font-bold"
+                >
+                  <i class="fa-solid fa-camera mr-1"></i>Ambil foto
+                </button>
+              </div>
+              <input
+                id="newMenuPhotoInput"
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                class="hidden"
+                onchange="handleMenuPhotoSelection(event)"
+              />
+              <div id="newMenuImagePreview" class="mt-2"></div>
+              <p
+                id="newMenuImageStatus"
+                class="mt-2 text-[10px] text-slate-500"
+              >
+                Belum ada foto menu.
+              </p>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="font-bold text-slate-800 text-sm">
+                  Resep / Bahan Baku per Porsi
+                </h4>
+                <p class="text-[10px] text-slate-500">
+                  Masukkan takaran yang terpakai setiap satu porsi menu.
+                </p>
+              </div>
+              <button
+                type="button"
+                onclick="addRecipeRow()"
+                class="px-3 py-1.5 bg-slate-100 hover:bg-emerald-100 text-emerald-700 rounded-lg text-xs font-bold"
+              >
+                <i class="fa-solid fa-plus mr-1"></i>Tambah Bahan
+              </button>
+            </div>
+            <div id="newMenuRecipeRows" class="space-y-2"></div>
+            <p id="newMenuRecipeEmpty" class="text-xs text-slate-400 italic">
+              Belum ada bahan resep. Tambahkan minimal satu bahan agar stok
+              otomatis berkurang saat transaksi.
+            </p>
+          </div>
+          <button
+            onclick="addNewMenuItem()"
+            class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold text-sm hover:bg-emerald-700 transition"
+          >
+            Simpan Menu ke Katalog
+          </button>
+        </div>
+      </div>
+
+      <!-- MODAL RIWAYAT STRUK HARI INI -->
+      <div
+        id="modal-receipt-history"
+        class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4"
+      >
+        <div
+          class="bg-white rounded-2xl p-6 max-w-3xl w-full shadow-xl space-y-4 max-h-[90vh] overflow-y-auto"
+        >
+          <div class="flex justify-between items-center border-b pb-2">
+            <h3 class="font-bold text-slate-800">Riwayat Struk Hari Ini</h3>
+            <button
+              onclick="closeModal('modal-receipt-history')"
+              class="text-slate-400 hover:text-slate-600 text-xl font-bold"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr
+                  class="bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-500 uppercase"
+                >
+                  <th class="p-3">No Struk</th>
+                  <th class="p-3">Waktu</th>
+                  <th class="p-3">Rincian Menu</th>
+                  <th class="p-3 text-right">Total Transaksi</th>
+                </tr>
+              </thead>
+              <tbody
+                id="receiptHistoryTableBody"
+                class="divide-y divide-slate-100 text-xs"
+              ></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL TAMBAH / EDIT BAHAN BAKU -->
+      <div
+        id="modal-material-form"
+        class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4"
+      >
+        <div
+          class="bg-white rounded-2xl p-6 max-w-lg w-full shadow-xl space-y-4 max-h-[90vh] overflow-y-auto"
+        >
+          <div class="flex justify-between items-center border-b pb-2">
+            <h3 id="materialFormTitle" class="font-bold text-slate-800">
+              Tambah Bahan Baku Baru
+            </h3>
+            <button
+              onclick="closeModal('modal-material-form')"
+              class="text-slate-400 hover:text-slate-600 text-xl font-bold"
+            >
+              &times;
+            </button>
+          </div>
+          <input type="hidden" id="editingMaterialId" />
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1"
+              >Nama Bahan Mentah</label
+            ><input
+              type="text"
+              id="materialName"
+              placeholder="Contoh: Minyak Goreng"
+              class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+            />
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Stok Fisik</label
+              ><input
+                type="number"
+                id="materialStock"
+                min="0"
+                step="0.01"
+                placeholder="10"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Satuan</label
+              ><select
+                id="materialUnit"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              >
+                <option value="kg">kg</option>
+                <option value="liter">Liter</option>
+                <option value="pcs">Pcs</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Batas ROP (Aman)</label
+              ><input
+                type="number"
+                id="materialRop"
+                min="0"
+                step="0.01"
+                placeholder="5"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Daya Tahan (Hari)</label
+              ><input
+                type="number"
+                id="materialShelfLife"
+                onchange="updateMaterialExpiryDate()"
+                min="1"
+                step="1"
+                placeholder="3"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Tanggal Input Batch</label
+              >
+              <input
+                type="date"
+                id="materialInputDate"
+                onchange="updateMaterialExpiryDate()"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Tanggal Kadarluwarsa (Batch EXP)</label
+              >
+              <input
+                type="date"
+                id="materialExpiryDate"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1"
+              >Harga Satuan Batch Awal (Rp)</label
+            ><input
+              type="number"
+              id="materialPrice"
+              min="1"
+              step="1"
+              placeholder="35000"
+              class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+            /><span class="text-[10px] text-slate-400 block mt-1"
+              >Harga baru akan dicatat ke grafik riwayat harga.</span
+            >
+          </div>
+          <button
+            onclick="saveMaterial()"
+            class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold text-sm hover:bg-emerald-700 transition"
+          >
+            <i class="fa-solid fa-floppy-disk mr-1"></i> Simpan Bahan Baku
+          </button>
+        </div>
+      </div>
+
+      <!-- MODAL TAMBAH BATCH STOK -->
+      <div
+        id="modal-batch-form"
+        class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4"
+      >
+        <div
+          class="bg-white rounded-2xl p-6 max-w-lg w-full shadow-xl space-y-4"
+        >
+          <div class="flex justify-between items-center border-b pb-2">
+            <h3 class="font-bold text-slate-800">Tambah Stok Baru</h3>
+            <button
+              onclick="closeModal('modal-batch-form')"
+              class="text-slate-400 hover:text-slate-600 text-xl font-bold"
+            >
+              &times;
+            </button>
+          </div>
+          <input type="hidden" id="batchMaterialId" />
+          <p
+            id="batchMaterialName"
+            class="text-sm font-semibold text-emerald-700"
+          ></p>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Jumlah Stok Baru</label
+              >
+              <input
+                type="number"
+                id="batchStock"
+                min="0.01"
+                step="0.01"
+                placeholder="10"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Harga Beli per Satuan (Rp)</label
+              >
+              <input
+                type="number"
+                id="batchPrice"
+                min="1"
+                step="1"
+                placeholder="38000"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Tanggal Masuk Batch</label
+              >
+              <input
+                type="date"
+                id="batchInputDate"
+                onchange="updateBatchExpiryDate()"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-600 mb-1"
+                >Daya Tahan (Hari)</label
+              >
+              <input
+                type="number"
+                id="batchShelfLife"
+                min="1"
+                step="1"
+                onchange="updateBatchExpiryDate()"
+                class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+              />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1"
+              >Tanggal Kadarluwarsa Batch</label
+            >
+            <input
+              type="date"
+              id="batchExpiryDate"
+              class="w-full p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"
+            />
+          </div>
+          <button
+            onclick="saveMaterialBatch()"
+            class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold text-sm hover:bg-emerald-700 transition"
+          >
+            <i class="fa-solid fa-boxes-stacked mr-1"></i> Simpan Batch Baru
+          </button>
+        </div>
+      </div>
+
+      <!-- MODAL MANAJEMEN FEFO -->
+      <div
+        id="modal-fefo"
+        class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4"
+      >
+        <div
+          class="bg-white rounded-2xl p-6 max-w-4xl w-full shadow-xl space-y-4 max-h-[90vh] overflow-y-auto"
+        >
+          <div class="flex justify-between items-center border-b pb-2">
+            <div>
+              <h3 class="font-bold text-slate-800 text-lg">
+                Manajemen FEFO (Expiry Warning)
+              </h3>
+              <p class="text-xs text-slate-500">
+                Bahan yang paling cepat kadarluwarsa diprioritaskan untuk
+                digunakan lebih dahulu.
+              </p>
+            </div>
+            <button
+              onclick="closeModal('modal-fefo')"
+              class="text-slate-400 hover:text-slate-600 text-xl font-bold"
+            >
+              &times;
+            </button>
+          </div>
+          <p
+            id="materialDisposalSetupWarning"
+            class="hidden rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800"
+            role="status"
+          >
+            Riwayat pembuangan belum tersambung. Jalankan
+            <code
+              >supabase/migrations/20261019_material_batch_disposals.sql</code
+            >
+            di Supabase SQL Editor, lalu muat ulang aplikasi.
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr
+                  class="bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-500 uppercase"
+                >
+                  <th class="p-3">Prioritas</th>
+                  <th class="p-3">Bahan Baku</th>
+                  <th class="p-3">Stok</th>
+                  <th class="p-3">Tanggal EXP</th>
+                  <th class="p-3">Status</th>
+                  <th class="p-3">Rekomendasi</th>
+                  <th class="p-3">Aksi</th>
+                </tr>
+              </thead>
+              <tbody
+                id="fefoTableBody"
+                class="divide-y divide-slate-100 text-sm"
+              ></tbody>
+            </table>
+          </div>
+          <section class="space-y-2 border-t border-slate-200 pt-4">
+            <div>
+              <h4 class="font-bold text-slate-800">
+                Riwayat Pembuangan Bahan Kadarluwarsa
+              </h4>
+              <p class="text-xs text-slate-500">
+                Menyimpan jumlah yang dibuang, nilai kerugian, tanggal EXP,
+                operator, dan alasan.
+              </p>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr
+                    class="bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-500 uppercase"
+                  >
+                    <th class="p-3">Waktu</th>
+                    <th class="p-3">Bahan / EXP</th>
+                    <th class="p-3">Jumlah</th>
+                    <th class="p-3">Kerugian</th>
+                    <th class="p-3">Operator / Alasan</th>
+                  </tr>
+                </thead>
+                <tbody
+                  id="expiredDisposalHistoryTable"
+                  class="divide-y divide-slate-100 text-sm"
+                ></tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- POPUP DETAIL TANGGAL EXP BATCH -->
+      <div
+        id="modal-material-batch-expiry"
+        class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="materialBatchExpiryTitle"
+      >
+        <div
+          class="max-h-[90vh] w-full max-w-xl space-y-4 overflow-y-auto rounded-2xl bg-white p-6 shadow-xl"
+        >
+          <div class="flex items-center justify-between border-b pb-3">
+            <div>
+              <h3
+                id="materialBatchExpiryTitle"
+                class="font-bold text-slate-800"
+              >
+                Tanggal EXP Batch
+              </h3>
+              <p class="text-xs text-slate-500">
+                Hanya batch yang masih memiliki stok ditampilkan.
+              </p>
+            </div>
+            <button
+              onclick="closeModal('modal-material-batch-expiry')"
+              class="text-xl font-bold text-slate-400 hover:text-slate-600"
+              aria-label="Tutup"
+            >
+              &times;
+            </button>
+          </div>
+          <div
+            id="materialBatchExpiryDetails"
+            class="space-y-2"
+            aria-live="polite"
+          ></div>
+          <button
+            onclick="closeModal('modal-material-batch-expiry')"
+            class="w-full rounded-xl border border-slate-200 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-50"
+          >
+            Tutup
+          </button>
+        </div>
+      </div>
+
+      <!-- MODAL PEMBUANGAN BATCH KADARLUWARSA -->
+      <div
+        id="modal-expired-disposal"
+        class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="expiredDisposalTitle"
+      >
+        <div
+          class="bg-white rounded-2xl p-6 max-w-xl w-full shadow-xl space-y-4 max-h-[90vh] overflow-y-auto"
+        >
+          <div class="flex justify-between items-center border-b pb-3">
+            <div>
+              <h3 id="expiredDisposalTitle" class="font-bold text-slate-800">
+                Buang Stok Batch Kadarluwarsa
+              </h3>
+              <p
+                id="expiredDisposalMaterial"
+                class="text-sm text-rose-700 font-semibold"
+              ></p>
+            </div>
+            <button
+              onclick="closeModal('modal-expired-disposal')"
+              class="text-slate-400 hover:text-slate-600 text-xl font-bold"
+              aria-label="Tutup"
+            >
+              &times;
+            </button>
+          </div>
+          <div
+            class="rounded-xl bg-rose-50 border border-rose-200 p-3 text-sm text-rose-800"
+          >
+            <p>
+              Sisa batch:
+              <strong id="expiredDisposalStock"></strong>
+            </p>
+            <p>
+              Harga beli per satuan:
+              <strong id="expiredDisposalUnitCost"></strong>
+            </p>
+            <p>
+              Estimasi nilai yang dibuang:
+              <strong id="expiredDisposalLossPreview"></strong>
+            </p>
+          </div>
+          <label class="block text-xs font-semibold text-slate-600">
+            Jumlah yang dibuang
+            <input
+              id="expiredDisposalQuantity"
+              type="number"
+              min="0.001"
+              step="any"
+              required
+              oninput="updateExpiredDisposalPreview()"
+              class="mt-1 w-full p-2.5 border rounded-xl text-sm font-normal focus:ring-2 focus:ring-rose-500 outline-none"
+            />
+          </label>
+          <label class="block text-xs font-semibold text-slate-600">
+            Nama operator
+            <input
+              id="expiredDisposalChangedBy"
+              type="text"
+              required
+              maxlength="80"
+              value="Pemilik warung"
+              class="mt-1 w-full p-2.5 border rounded-xl text-sm font-normal focus:ring-2 focus:ring-rose-500 outline-none"
+            />
+          </label>
+          <label class="block text-xs font-semibold text-slate-600">
+            Catatan tambahan (opsional)
+            <textarea
+              id="expiredDisposalNote"
+              maxlength="240"
+              rows="2"
+              placeholder="Contoh: kemasan rusak atau sudah berubah bau."
+              class="mt-1 w-full p-2.5 border rounded-xl text-sm font-normal focus:ring-2 focus:ring-rose-500 outline-none"
+            ></textarea>
+          </label>
+          <p class="text-xs text-slate-500">
+            Hanya batch yang tanggal EXP-nya sudah tiba atau lewat yang bisa
+            dibuang. Stok dan riwayat kerugian diperbarui bersama.
+          </p>
+          <div class="flex gap-2">
+            <button
+              onclick="closeModal('modal-expired-disposal')"
+              class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50"
+            >
+              Batal
+            </button>
+            <button
+              onclick="requestExpiredBatchDisposal()"
+              class="flex-1 py-2.5 bg-rose-600 text-white rounded-xl text-sm font-bold hover:bg-rose-700"
+            >
+              Periksa & Buang
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL KOREKSI TANGGAL EXP BATCH -->
+      <div
+        id="modal-expiry-correction"
+        class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="expiryCorrectionTitle"
+      >
+        <div
+          class="bg-white rounded-2xl p-6 max-w-xl w-full shadow-xl space-y-4 max-h-[90vh] overflow-y-auto"
+        >
+          <div class="flex justify-between items-center border-b pb-3">
+            <div>
+              <h3 id="expiryCorrectionTitle" class="font-bold text-slate-800">
+                Koreksi Tanggal EXP Batch
+              </h3>
+              <p
+                id="expiryCorrectionMaterial"
+                class="text-sm text-emerald-700 font-semibold"
+              ></p>
+            </div>
+            <button
+              onclick="closeModal('modal-expiry-correction')"
+              class="text-slate-400 hover:text-slate-600 text-xl font-bold"
+              aria-label="Tutup"
+            >
+              &times;
+            </button>
+          </div>
+          <div
+            class="rounded-xl bg-slate-50 border border-slate-200 p-3 text-sm"
+          >
+            <p>
+              <span class="font-semibold">Tanggal EXP saat ini:</span>
+              <span id="expiryCorrectionOldDate"></span>
+            </p>
+            <p>
+              <span class="font-semibold">Sisa stok batch:</span>
+              <span id="expiryCorrectionStock"></span>
+            </p>
+          </div>
+          <label class="block text-xs font-semibold text-slate-600">
+            Tanggal EXP yang benar
+            <input
+              id="expiryCorrectionNewDate"
+              type="date"
+              required
+              onchange="updateExpiryCorrectionWarning()"
+              class="mt-1 w-full p-2.5 border rounded-xl text-sm font-normal focus:ring-2 focus:ring-emerald-500 outline-none"
+            />
+          </label>
+          <p
+            id="expiryCorrectionWarning"
+            class="hidden rounded-lg bg-amber-50 border border-amber-200 p-3 text-xs text-amber-800"
+            role="status"
+          ></p>
+          <label class="block text-xs font-semibold text-slate-600">
+            Nama operator
+            <input
+              id="expiryCorrectionChangedBy"
+              type="text"
+              required
+              maxlength="80"
+              value="Pemilik warung"
+              class="mt-1 w-full p-2.5 border rounded-xl text-sm font-normal focus:ring-2 focus:ring-emerald-500 outline-none"
+            />
+          </label>
+          <label class="block text-xs font-semibold text-slate-600">
+            Alasan koreksi
+            <textarea
+              id="expiryCorrectionReason"
+              required
+              maxlength="240"
+              rows="3"
+              placeholder="Contoh: salah input; tanggal sudah diperiksa ulang pada label kemasan."
+              class="mt-1 w-full p-2.5 border rounded-xl text-sm font-normal focus:ring-2 focus:ring-emerald-500 outline-none"
+            ></textarea>
+          </label>
+          <div>
+            <h4 class="text-sm font-bold text-slate-700">
+              Riwayat koreksi batch
+            </h4>
+            <div
+              id="expiryCorrectionHistory"
+              class="mt-2 max-h-40 space-y-2 overflow-y-auto rounded-xl border border-slate-200 p-3 text-xs text-slate-600"
+              aria-live="polite"
+            ></div>
+          </div>
+          <p class="text-xs text-slate-500">
+            Koreksi hanya mengubah tanggal dan tidak menambah atau mengembalikan
+            jumlah stok batch.
+          </p>
+          <div class="flex gap-2">
+            <button
+              onclick="closeModal('modal-expiry-correction')"
+              class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50"
+            >
+              Batal
+            </button>
+            <button
+              onclick="requestBatchExpiryCorrection()"
+              class="flex-1 py-2.5 bg-emerald-600 text-white rounded-xl text-sm font-bold hover:bg-emerald-700"
+            >
+              Periksa & Koreksi
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL 4: WHATSAPP ALERT TEST -->
+      <div
+        id="modal-whatsapp"
+        class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4"
+      >
+        <div
+          class="bg-white rounded-2xl p-6 max-w-md w-full shadow-xl space-y-4 text-center"
+        >
+          <div
+            class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-2xl"
+          >
+            <i class="fa-brands fa-whatsapp"></i>
+          </div>
+          <h3 class="font-bold text-slate-800 text-lg">
+            Notifikasi WhatsApp Gateway
+          </h3>
+          <p class="text-xs text-slate-500">
+            Sistem otomatis mengirimkan pesan Peringatan Stok Rawan & Laporan
+            Omzet Harian langsung ke HP Pemilik Toko. (Pratinjau statis — untuk
+            mengaktifkan pengiriman sungguhan, sambungkan Supabase Edge Function
+            ke provider WhatsApp API pilihan Anda.)
+          </p>
+          <div
+            class="p-3 bg-slate-50 border rounded-xl text-left text-xs font-mono text-slate-700"
+          >
+            [ForecastBiz Alert]<br />
+            ⚠️ Stok Daging Ayam sisa 3 kg (Di bawah ROP 10 kg). Segera lakukan
+            pemesanan!
+          </div>
+          <button
+            onclick="closeModal('modal-whatsapp')"
+            class="w-full py-2.5 bg-emerald-600 text-white rounded-xl font-bold text-sm hover:bg-emerald-700 transition"
+          >
+            Tutup Pratinjau
+          </button>
+        </div>
+      </div>
+
+      <!-- MODAL CATATAN KEJADIAN PENJUALAN -->
+      <div
+        id="modal-sales-event"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/50 p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="salesEventTitle"
+      >
+        <div
+          class="max-h-[90vh] w-full max-w-lg space-y-4 overflow-y-auto rounded-2xl bg-white p-6 shadow-xl"
+        >
+          <div class="border-b pb-3">
+            <h3 id="salesEventTitle" class="font-bold text-slate-800">
+              Catat perubahan penjualan
+            </h3>
+            <p id="salesEventSummary" class="mt-2 text-sm text-slate-600"></p>
+          </div>
+
+          <fieldset class="space-y-2">
+            <legend class="text-sm font-semibold text-slate-700">
+              Apa yang terjadi?
+            </legend>
+            <div class="grid gap-2 sm:grid-cols-2">
+              <label
+                class="flex items-center gap-2 rounded-lg border p-2 text-sm"
+              >
+                <input
+                  type="radio"
+                  name="salesEventCategory"
+                  value="promo"
+                  required
+                />
+                Promo/diskon
+              </label>
+              <label
+                class="flex items-center gap-2 rounded-lg border p-2 text-sm"
+              >
+                <input type="radio" name="salesEventCategory" value="cuaca" />
+                Cuaca
+              </label>
+              <label
+                class="flex items-center gap-2 rounded-lg border p-2 text-sm"
+              >
+                <input type="radio" name="salesEventCategory" value="libur" />
+                Hari libur/acara
+              </label>
+              <label
+                class="flex items-center gap-2 rounded-lg border p-2 text-sm"
+              >
+                <input type="radio" name="salesEventCategory" value="viral" />
+                Bahan baru/viral
+              </label>
+              <label
+                class="flex items-center gap-2 rounded-lg border p-2 text-sm"
+              >
+                <input
+                  type="radio"
+                  name="salesEventCategory"
+                  value="stok_habis"
+                />
+                Kehabisan stok
+              </label>
+              <label
+                class="flex items-center gap-2 rounded-lg border p-2 text-sm"
+              >
+                <input type="radio" name="salesEventCategory" value="lainnya" />
+                Lainnya
+              </label>
+            </div>
+            <label
+              id="salesEventNoteLabel"
+              class="hidden space-y-1 text-sm text-slate-700"
+            >
+              <span>Ceritakan singkat kejadiannya</span>
+              <input
+                id="salesEventNote"
+                type="text"
+                maxlength="240"
+                class="w-full rounded-lg border border-slate-200 p-2"
+                placeholder="Contoh: bazar di depan warung"
+              />
+            </label>
+          </fieldset>
+
+          <fieldset class="space-y-2">
+            <legend class="text-sm font-semibold text-slate-700">
+              Apakah ini akan terjadi lagi?
+            </legend>
+            <label class="flex items-center gap-2 text-sm text-slate-700">
+              <input
+                type="radio"
+                name="salesEventRecurring"
+                value="false"
+                checked
+              />
+              Cuma sekali ini saja
+            </label>
+            <label class="flex items-center gap-2 text-sm text-slate-700">
+              <input type="radio" name="salesEventRecurring" value="true" />
+              Akan rutin terjadi
+            </label>
+          </fieldset>
+
+          <p
+            id="salesEventError"
+            class="hidden text-sm text-rose-600"
+            role="alert"
+          ></p>
+          <div class="flex gap-2">
+            <button
+              type="button"
+              onclick="skipSalesEvent()"
+              class="flex-1 rounded-xl border border-slate-200 py-2.5 text-sm font-bold text-slate-600 hover:bg-slate-50"
+            >
+              Lewati
+            </button>
+            <button
+              type="button"
+              onclick="saveSalesEvent()"
+              class="flex-1 rounded-xl bg-emerald-600 py-2.5 text-sm font-bold text-white hover:bg-emerald-700"
+            >
+              Simpan
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL PROMO HABISKAN STOK -->
+      <div
+        id="modal-fefo-promo"
+        class="fixed inset-0 z-[55] hidden items-center justify-center bg-black/50 p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="fefoPromoTitle"
+      >
+        <div
+          class="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-white p-6 shadow-xl"
+        >
+          <div id="fefoPromoContent"></div>
+        </div>
+      </div>
+
+      <!-- MODAL BUAT PROMO -->
+      <div
+        id="modal-promo-form"
+        class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/50 p-4"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="promotionFormTitle"
+      >
+        <form
+          id="promotionForm"
+          class="max-h-[90vh] w-full max-w-xl space-y-4 overflow-y-auto rounded-2xl bg-white p-6 shadow-xl"
+        >
+          <div class="flex items-center justify-between border-b pb-3">
+            <div>
+              <h3
+                id="promotionFormTitle"
+                class="text-lg font-bold text-slate-800"
+              >
+                Buat Promo Menu
+              </h3>
+              <p class="text-xs text-slate-500">
+                Atur harga dan hari promo. Kasir akan mengikuti jadwal ini.
+              </p>
+            </div>
+            <button
+              type="button"
+              onclick="closeModal('modal-promo-form')"
+              class="text-xl font-bold text-slate-400"
+            >
+              &times;
+            </button>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <div class="rounded-xl bg-slate-50 p-3">
+              <span class="block text-xs text-slate-500">Nama menu</span>
+              <strong
+                id="promotionMenuName"
+                class="text-sm text-slate-800"
+              ></strong>
+            </div>
+            <div class="rounded-xl bg-slate-50 p-3">
+              <span class="block text-xs text-slate-500">Harga normal</span>
+              <strong
+                id="promotionNormalPrice"
+                class="text-sm text-slate-800"
+              ></strong>
+            </div>
+            <label class="space-y-1 text-xs font-semibold text-slate-600">
+              Harga promo (Rp)
+              <input
+                id="promotionPrice"
+                type="number"
+                min="1"
+                step="any"
+                class="w-full rounded-lg border p-2.5 text-sm font-normal"
+                required
+              />
+            </label>
+            <label class="space-y-1 text-xs font-semibold text-slate-600">
+              Diskon (%)
+              <input
+                id="promotionDiscount"
+                type="number"
+                min="0.1"
+                max="99.9"
+                step="0.1"
+                class="w-full rounded-lg border p-2.5 text-sm font-normal"
+              />
+            </label>
+            <label class="space-y-1 text-xs font-semibold text-slate-600">
+              Tanggal mulai
+              <input
+                id="promotionStartDate"
+                type="date"
+                class="w-full rounded-lg border p-2.5 text-sm font-normal"
+                required
+              />
+            </label>
+            <label class="space-y-1 text-xs font-semibold text-slate-600">
+              Tanggal selesai
+              <input
+                id="promotionEndDate"
+                type="date"
+                class="w-full rounded-lg border p-2.5 text-sm font-normal"
+                required
+              />
+            </label>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="self-center text-xs font-semibold text-slate-600"
+              >Durasi cepat:</span
+            >
+            <button
+              type="button"
+              data-promo-duration="1"
+              aria-pressed="false"
+              class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-700 transition-colors hover:border-emerald-500"
+            >
+              Hari ini saja
+            </button>
+            <button
+              type="button"
+              data-promo-duration="7"
+              aria-pressed="false"
+              class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-700 transition-colors hover:border-emerald-500"
+            >
+              7 hari
+            </button>
+            <button
+              type="button"
+              data-promo-duration="30"
+              aria-pressed="false"
+              class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-700 transition-colors hover:border-emerald-500"
+            >
+              30 hari
+            </button>
+          </div>
+          <fieldset class="space-y-2">
+            <legend class="text-xs font-semibold text-slate-600">
+              Hari tertentu (tidak memilih berarti setiap hari)
+            </legend>
+            <div class="flex flex-wrap gap-2">
+              <button
+                type="button"
+                data-promo-weekday="1"
+                aria-pressed="false"
+                class="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-emerald-500"
+              >
+                Sen
+              </button>
+              <button
+                type="button"
+                data-promo-weekday="2"
+                aria-pressed="false"
+                class="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-emerald-500"
+              >
+                Sel
+              </button>
+              <button
+                type="button"
+                data-promo-weekday="3"
+                aria-pressed="false"
+                class="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-emerald-500"
+              >
+                Rab
+              </button>
+              <button
+                type="button"
+                data-promo-weekday="4"
+                aria-pressed="false"
+                class="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-emerald-500"
+              >
+                Kam
+              </button>
+              <button
+                type="button"
+                data-promo-weekday="5"
+                aria-pressed="false"
+                class="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-emerald-500"
+              >
+                Jum
+              </button>
+              <button
+                type="button"
+                data-promo-weekday="6"
+                aria-pressed="false"
+                class="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-emerald-500"
+              >
+                Sab
+              </button>
+              <button
+                type="button"
+                data-promo-weekday="0"
+                aria-pressed="false"
+                class="rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-600 transition-colors hover:border-emerald-500"
+              >
+                Min
+              </button>
+            </div>
+          </fieldset>
+          <p
+            id="promotionSummary"
+            class="rounded-xl bg-slate-50 p-3 text-xs leading-5 text-slate-700"
+          ></p>
+          <p
+            id="promotionFormError"
+            class="hidden rounded-lg bg-rose-50 p-3 text-xs text-rose-700"
+            aria-live="polite"
+          ></p>
+          <div class="flex gap-2">
+            <button
+              type="button"
+              onclick="closeModal('modal-promo-form')"
+              class="flex-1 rounded-xl border py-2.5 text-sm font-bold text-slate-600"
+            >
+              Batal
+            </button>
+            <button
+              id="promotionSaveButton"
+              type="submit"
+              class="flex-1 rounded-xl bg-emerald-600 py-2.5 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              Mulai Promo
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- MODAL VERIFIKASI DUA LANGKAH -->
+      <div
+        id="modal-action-confirm"
+        class="fixed inset-0 bg-black/50 z-[60] hidden flex items-center justify-center p-4"
+      >
+        <div
+          class="bg-white rounded-2xl p-6 max-w-md w-full shadow-xl space-y-4"
+        >
+          <div class="flex items-center gap-3 border-b pb-3">
+            <div
+              id="confirmIcon"
+              class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center"
+            >
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div>
+              <span
+                id="confirmStepLabel"
+                class="text-[10px] uppercase tracking-wider font-bold text-amber-600"
+                >Langkah 1 dari 2</span
+              >
+              <h3 id="confirmTitle" class="font-bold text-slate-800">
+                Verifikasi Tindakan
+              </h3>
+            </div>
+          </div>
+          <div id="confirmStepOne" class="space-y-3">
+            <p id="confirmMessage" class="text-sm text-slate-700"></p>
+            <div
+              id="confirmDetail"
+              class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600"
+            ></div>
+            <p class="text-xs text-slate-500">
+              Periksa kembali informasi ini sebelum melanjutkan.
+            </p>
+            <div class="flex gap-2">
+              <button
+                onclick="cancelActionConfirmation()"
+                class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50"
+              >
+                Batal</button
+              ><button
+                onclick="continueActionConfirmation()"
+                class="flex-1 py-2.5 bg-slate-800 text-white rounded-xl text-sm font-bold hover:bg-slate-900"
+              >
+                Lanjut
+              </button>
+            </div>
+          </div>
+          <div id="confirmStepTwo" class="hidden space-y-3">
+            <div
+              class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-sm text-amber-800"
+            >
+              <i class="fa-solid fa-circle-info mr-1"></i> Tindakan ini akan
+              langsung dijalankan dan tidak dapat dibatalkan dari langkah ini.
+            </div>
+            <label
+              class="flex items-start gap-2 text-sm text-slate-700 cursor-pointer"
+              ><input
+                id="confirmAcknowledgement"
+                type="checkbox"
+                onchange="toggleFinalConfirmation()"
+                class="mt-1 accent-emerald-600"
+              />
+              <span
+                >Saya sudah memeriksa detail dan memahami tindakan ini.</span
+              ></label
+            >
+            <div class="flex gap-2">
+              <button
+                onclick="cancelActionConfirmation()"
+                class="flex-1 py-2.5 border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50"
+              >
+                Batal</button
+              ><button
+                id="confirmFinalButton"
+                disabled
+                onclick="executeConfirmedAction()"
+                class="flex-1 py-2.5 bg-rose-600 text-white rounded-xl text-sm font-bold opacity-50 cursor-not-allowed"
+              >
+                Konfirmasi & Jalankan
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.getElementById("welcome-start").addEventListener("click", () => {
+        const welcomeScreen = document.getElementById("welcome-screen");
+        const appContent = document.getElementById("app-content");
+
+        appContent.inert = false;
+        appContent.setAttribute("aria-hidden", "false");
+        appContent.focus({ preventScroll: true });
+        document.body.classList.remove("welcome-active");
+        welcomeScreen.classList.add("is-leaving");
+        window.setTimeout(() => welcomeScreen.remove(), 500);
+      });
+
+      document.body.classList.add("welcome-active");
+    </script>
+    <!-- JS Aplikasi (module) — semua logika ada di folder js/ -->
+    <script type="module" src="js/main.js?v=20261021-2"></script>
+  </body>
+</html>
